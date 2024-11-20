@@ -110,7 +110,7 @@ class OrderManager:
         if not self.orders:
             print("Список замовлень порожній.")
             return None
-        largest_order = max(self.orders, key=lambda x: x["Сума замовлення"])
+        largest_order = max(self.orders, key=lambda x: float(x["Сума замовлення"]))
         print("Замовлення з найбільшою сумою:")
         print(largest_order)
         return largest_order
@@ -133,7 +133,7 @@ class OrderManager:
         plt.show()
 
     def visualize_orders_histogram(self) -> None:
-        date = [
+        dates: list[datatime] = [
             datetime.strptime(order["Дата замовлення"], "%Y-%m-%d")
             for order in self.orders
         ]
